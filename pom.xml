@@ -2,13 +2,25 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.cgsic</groupId>
-  <artifactId>trabalho</artifactId>
+  <groupId>com.cgsic.trabalho</groupId>
+  <artifactId>morse-code</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <description>Morse Code Generator</description>
-
   <name>Morse Code</name>
-  <url>http://maven.apache.org</url>
+  <description>Morse Code Generator</description>
+  
+  <developers>
+	<developer>
+		<id>ugocastro</id>
+		<name>Ugo Castro</name>
+		<email>ugocastroo@gmail.com</email>
+	</developer>
+	
+	<developer>
+		<id>uiradias</id>
+		<name>Uira Dias</name>
+		<email>uiradias@gmail.com</email>
+	</developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,6 +48,7 @@
   </dependencies>
   
 	<build>
+		<finalName>morse-code</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
