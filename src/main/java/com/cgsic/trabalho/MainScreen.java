@@ -1,24 +1,26 @@
 package com.cgsic.trabalho;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class MainScreen extends JFrame {
 
+	private static final long serialVersionUID = 8566684324358819966L;
+
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textFieldWord;
+	private JTextField textFieldMorseCode;
 	private JTextArea textArea;
-	
+
 	MorseCode morseCode;
 
 	/**
@@ -43,39 +45,60 @@ public class MainScreen extends JFrame {
 	public MainScreen() {
 		setTitle("Morse Code");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 480, 370);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
-		panel.setBounds(6, 6, 438, 266);
+		panel.setBounds(6, 6, 480, 370);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		JLabel lblEnterAWord = new JLabel("Enter a word or an Expression");
+
+		JLabel lblEnterAWord = new JLabel("Enter a word/digits");
 		lblEnterAWord.setBounds(6, 6, 207, 16);
 		panel.add(lblEnterAWord);
-		
-		textField = new JTextField();
-		textField.setBounds(3, 23, 358, 28);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("GO!");
+
+		textFieldWord = new JTextField();
+		textFieldWord.setBounds(3, 23, 358, 22);
+		panel.add(textFieldWord);
+		textFieldWord.setColumns(10);
+
+		JLabel lblEnterAMorseCode = new JLabel(
+				"Enter a morse code (separated by ' ')");
+		lblEnterAMorseCode.setBounds(6, 57, 250, 16);
+		panel.add(lblEnterAMorseCode);
+
+		textFieldMorseCode = new JTextField();
+		textFieldMorseCode.setBounds(3, 74, 358, 22);
+		panel.add(textFieldMorseCode);
+		textFieldMorseCode.setColumns(10);
+
+		JButton btnNewButton = new JButton("Encrypt");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				morseCode = new MorseCode();
-				String result = morseCode.encrypt(textField.getText());
+				String result = morseCode.encrypt(textFieldWord.getText());
 				textArea.setText(result);
 			}
 		});
-		btnNewButton.setBounds(376, 24, 56, 29);
+		btnNewButton.setBounds(376, 20, 76, 29);
 		panel.add(btnNewButton);
 		
+		JButton btnDecrypt = new JButton("Decrypt");
+		btnDecrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				morseCode = new MorseCode();
+				String result = morseCode.decrypt(textFieldMorseCode.getText());
+				textArea.setText(result);
+			}
+		});
+		btnDecrypt.setBounds(376, 71, 76, 29);
+		panel.add(btnDecrypt);
+
 		textArea = new JTextArea();
-		textArea.setBounds(6, 57, 426, 203);
+		textArea.setBounds(6, 112, 436, 210);
 		panel.add(textArea);
 	}
 }
